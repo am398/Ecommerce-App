@@ -1,6 +1,7 @@
 import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-const productSchema = new mongoose.Schema({
+const productSchema = new Schema({
     name: {
         type: String,
         required: [true, "Please Enter product Name"]
@@ -49,6 +50,11 @@ const productSchema = new mongoose.Schema({
     },
     reviews: [
         {
+            user: {
+                type: Schema.ObjectId,
+                ref: "User",
+                required: true
+            },
             name: {
                 type: String,
                 required: true
@@ -66,7 +72,12 @@ const productSchema = new mongoose.Schema({
             }
 
         }
-    ]
+    ],
+    user: {
+        type: Schema.ObjectId,
+        ref: "User",
+        required: true
+    },
 
 }, {
     timestamps: true
